@@ -3,7 +3,7 @@ import { Settings, DateTime } from "luxon";
 import { useEffect, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import { RiCelsiusFill, RiEyeLine, RiWindyFill } from "react-icons/ri";
-
+import { GiShamrock } from "react-icons/gi";
 import {
   IoMdSunny,
   IoMdRainy,
@@ -18,14 +18,16 @@ import {
   BsWater,
   BsThermometer,
   BsSearch,
+  BsBuilding,
 } from "react-icons/bs";
 const API_KEY = "e7495a12f8d050460be991f1f7cb6056";
 function App() {
   const [data, setData] = useState(null);
-  const [location, setLocation] = useState("São Paulo");
+  const [location, setLocation] = useState("Brasilia, BR");
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
   const handleInput = (e) => {
     setInput(e.target.value);
   };
@@ -121,7 +123,7 @@ function App() {
 
   date.toLocaleString();
   return (
-    <div className=" w-full h-screen flex flex-col items-center justify-center px-4 lg:px0">
+    <div className=" min-h-screen w-full h-full flex flex-col items-center justify-center px-4 lg:px0">
       {/* FORM */}
 
       {errorMsg && (
@@ -143,22 +145,40 @@ function App() {
           </button>
         </div>
       </form>
-      <div className="shadow-xl shadow-black/80 w-full bg-white/10 max-w-xl min-h-[484px] text-white backdrop-blur-[32px] rounded-2xl py-12 px-6">
+      <div className="shadow-xl shadow-black/80 w-full bg-white/10 max-w-xl min-h-fit text-white backdrop-blur-[32px] rounded-2xl py-12 px-6">
         {loading ? (
           <div className="w-full h-full flex justify-center items-center">
             <ImSpinner8 className="text-white text-8xl animate-spin" />
           </div>
         ) : (
           <div>
+            {/* SP to Dublin */}
+            <div className="flex justify-end mb-2">
+              <button
+                onClick={(e) => setLocation("São Paulo, BR")}
+                className="bg-gradient-to-r from-blue-700 to-blue-600 rounded-2xl p-2 w-[120px] items-center justify-center inline-flex mr-4"
+              >
+                <BsBuilding />
+                <p className="ml-2">São Paulo</p>
+              </button>
+              <button
+                onClick={(e) => setLocation("Dublin, IE")}
+                className="  bg-gradient-to-r from-green-900 to-green-700 rounded-2xl p-2 w-[120px] items-center justify-center inline-flex "
+              >
+                <GiShamrock />
+
+                <p className="ml-2">Dublin</p>
+              </button>
+            </div>
             <div className=" flex items-center gap-x-5">
-              <div className="text-[87px]">{icon}</div>
+              <div className="text-[45px]">{icon}</div>
               {/* nome país */}
-              <div className="text-2xl font-semibold">
+              <div className="text-xl font-semibold">
                 {data.name}, {data.sys.country}
               </div>
             </div>
             {/* BODY */}
-            <div className="my-2">
+            <div className="my-2 ">
               <div className="flex align-center justify-center">
                 {/* temp */}
                 <div className="text-[144px] leading-none font-light">
@@ -177,7 +197,7 @@ function App() {
               </div>
             </div>
             {/* BOTTOM */}
-            <div className="max-w-md mx-auto flex flex-col gap-y-6">
+            <div className="max-w-md mx-auto flex flex-col gap-y-6 ">
               <div className="flex justify-between">
                 <div className="flex items-center gap-x-2">
                   {/* icon */}

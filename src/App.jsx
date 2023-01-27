@@ -95,16 +95,16 @@ function App() {
       icon = <BsCloudHaze2Fill />;
       break;
     case "Rain":
-      icon = <IoMdRainy />;
+      icon = <IoMdRainy className=" text-cyan-400" />;
       break;
     case "Clear":
-      icon = <IoMdSunny />;
+      icon = <IoMdSunny className=" text-yellow-400" />;
       break;
     case "Drizzle":
-      icon = <BsCloudDrizzleFill />;
+      icon = <BsCloudDrizzleFill className="text-cyan-800" />;
       break;
     case "Snow":
-      icon = <IoMdSnow />;
+      icon = <IoMdSnow className=" text-cyan-50" />;
       break;
     case "Thunderstorm":
       icon = <IoMdThunderstorm />;

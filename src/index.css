@@ -9,3 +9,14 @@
     font-family: "Montserrat", sans-serif;
   }
 }
+html {
+  background: rgb(71, 115, 151);
+  background: linear-gradient(
+    156deg,
+    rgba(71, 115, 151, 1) 0%,
+    rgba(30, 60, 83, 1) 25%,
+    rgba(9, 32, 49, 1) 50%,
+    rgba(14, 25, 34, 1) 80%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}

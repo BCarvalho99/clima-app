@@ -121,13 +121,13 @@ function App() {
 
   date.toLocaleString();
   return (
-    <div className="w-full h-screen bg-gradient-to-br from-[#477397] via-[#1d384dfd] to-[#092031] flex flex-col items-center justify-center px-4 lg:px0">
+    <div className=" w-full h-screen flex flex-col items-center justify-center px-4 lg:px0">
       {/* FORM */}
 
       {errorMsg && (
         <div className="w-full max-w-xl lg:max-w-sm bg-red-600 text-white top-2 lg:top-10 my-10 p-6 capitalize rounded-sm">{`${errorMsg.response.data.message}`}</div>
       )}
-      <form className="h-16 bg-white/10 w-full max-w-xl  rounded-2xl backdrop-blur-[32px] mb-8">
+      <form className="shadow-md shadow-black/60  h-16 my-4 bg-white/10 w-full max-w-xl  rounded-2xl backdrop-blur-[32px] mb-8">
         <div className="  h-full relative flex items-center justify-between p-2">
           <input
             onChange={(e) => handleInput(e)}
@@ -143,7 +143,7 @@ function App() {
           </button>
         </div>
       </form>
-      <div className="shadow-xl shadow-black/80 w-full bg-white/10 max-w-xl min-h-[584px] text-white backdrop-blur-[32px] rounded-2xl py-12 px-6">
+      <div className="shadow-xl shadow-black/80 w-full bg-white/10 max-w-xl min-h-[484px] text-white backdrop-blur-[32px] rounded-2xl py-12 px-6">
         {loading ? (
           <div className="w-full h-full flex justify-center items-center">
             <ImSpinner8 className="text-white text-8xl animate-spin" />
@@ -158,7 +158,7 @@ function App() {
               </div>
             </div>
             {/* BODY */}
-            <div className="my-20">
+            <div className="my-2">
               <div className="flex align-center justify-center">
                 {/* temp */}
                 <div className="text-[144px] leading-none font-light">

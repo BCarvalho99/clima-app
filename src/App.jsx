@@ -124,8 +124,6 @@ function App() {
   date.toLocaleString();
   return (
     <div className=" min-h-screen w-full h-full flex flex-col items-center justify-center px-4 lg:px0">
-      {/* FORM */}
-
       {errorMsg && (
         <div className="w-full max-w-xl lg:max-w-sm bg-red-600 text-white top-2 lg:top-10 my-10 p-6 capitalize rounded-sm">{`${errorMsg.response.data.message}`}</div>
       )}
@@ -172,15 +170,14 @@ function App() {
             </div>
             <div className=" flex items-center gap-x-5">
               <div className="text-[45px]">{icon}</div>
-              {/* nome país */}
+
               <div className="text-xl font-semibold">
                 {data.name}, {data.sys.country}
               </div>
             </div>
-            {/* BODY */}
+
             <div className="my-2 ">
               <div className="flex align-center justify-center">
-                {/* temp */}
                 <div className="text-[144px] leading-none font-light">
                   {parseInt(data.main.temp)}
                 </div>
@@ -196,11 +193,10 @@ function App() {
                 <div className="text-xl py-6">{date}</div>
               </div>
             </div>
-            {/* BOTTOM */}
+
             <div className="max-w-md mx-auto flex flex-col gap-y-6 ">
               <div className="flex justify-between">
                 <div className="flex items-center gap-x-2">
-                  {/* icon */}
                   <div className=" text-2xl">
                     <RiEyeLine />
                   </div>
@@ -225,7 +221,6 @@ function App() {
 
               <div className="flex justify-between">
                 <div className="flex items-center gap-x-2">
-                  {/* icon */}
                   <div className=" text-2xl">
                     <BsWater />
                   </div>

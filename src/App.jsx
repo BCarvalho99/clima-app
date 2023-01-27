@@ -25,7 +25,7 @@ function App() {
   const [location, setLocation] = useState("Porto");
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [errorMsg, setErrorMsg] = useState("");
   const handleInput = (e) => {
     setInput(e.target.value);
   };
@@ -47,21 +47,38 @@ function App() {
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${API_KEY}`;
 
-    axios.get(url).then((res) => {
-      setTimeout(() => {
-        setData(res.data);
+    axios
+      .get(url)
+      .then((res) => {
+        setTimeout(() => {
+          setData(res.data);
 
+          setLoading(false);
+        }, 1500);
+      })
+      .catch((err) => {
         setLoading(false);
-      }, 1500);
-    });
+        setErrorMsg(err);
+      });
   }, [location]);
+
+  //mensagem de erro
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setErrorMsg("");
+    }, 2000);
+    //limpar temporizador
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [errorMsg]);
 
   //  Se a data for falsa mostra um icone de carregamento animado
   if (!data) {
     return (
-      <div>
+      <div className="w-full h-screen bg-gradient-to-br from-[#477397] via-[#1d384dfd] to-[#092031] flex flex-col justify-center items-center">
         <div>
-          <ImSpinner8 className="text-5xl animate-spin" />
+          <ImSpinner8 className="text-5xl text-white animate-spin" />
         </div>
       </div>
     );
@@ -102,6 +119,10 @@ function App() {
   return (
     <div className="w-full h-screen bg-gradient-to-br from-[#477397] via-[#1d384dfd] to-[#092031] flex flex-col items-center justify-center px-4 lg:px0">
       {/* FORM */}
+
+      {errorMsg && (
+        <div className="w-full max-w-xl lg:max-w-sm bg-red-600 text-white top-2 lg:top-10 my-10 p-6 capitalize rounded-sm">{`${errorMsg.response.data.message}`}</div>
+      )}
       <form className="h-16 bg-black/30 w-full max-w-md rounded-full backdrop-blur-[32px] mb-8">
         <div className="h-full relative flex items-center justify-between p-2">
           <input
@@ -117,7 +138,6 @@ function App() {
             <BsSearch className="text-2xl text-white" />
           </button>
         </div>
-        >
       </form>
       <div className="shadow-xl shadow-black/80 w-full bg-white/10 max-w-[650px] min-h-[584px] text-white backdrop-blur-[32px] rounded-2xl py-12 px-6">
         {loading ? (

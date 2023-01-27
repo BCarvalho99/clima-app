@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DateTime } from "luxon";
+import { Settings, DateTime } from "luxon";
 import { useEffect, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import { RiCelsiusFill, RiEyeLine, RiWindyFill } from "react-icons/ri";
@@ -22,7 +22,7 @@ import {
 const API_KEY = "e7495a12f8d050460be991f1f7cb6056";
 function App() {
   const [data, setData] = useState(null);
-  const [location, setLocation] = useState("Porto");
+  const [location, setLocation] = useState("São Paulo");
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -45,7 +45,7 @@ function App() {
   useEffect(() => {
     setLoading(true);
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${API_KEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&lang=pt&appid=${API_KEY}`;
 
     axios
       .get(url)
@@ -111,10 +111,14 @@ function App() {
       break;
   }
 
-  // date bject
-  const date = DateTime.fromISO(DateTime.now()).toFormat(
+  // Formatando o luxon
+
+  Settings.defaultLocale = "pt-BR";
+
+  const date = DateTime.fromISO(DateTime.now().setLocale("pt-BR")).toFormat(
     "cccc, dd  LLL yyyy | t"
   );
+
   date.toLocaleString();
   return (
     <div className="w-full h-screen bg-gradient-to-br from-[#477397] via-[#1d384dfd] to-[#092031] flex flex-col items-center justify-center px-4 lg:px0">
@@ -123,23 +127,23 @@ function App() {
       {errorMsg && (
         <div className="w-full max-w-xl lg:max-w-sm bg-red-600 text-white top-2 lg:top-10 my-10 p-6 capitalize rounded-sm">{`${errorMsg.response.data.message}`}</div>
       )}
-      <form className="h-16 bg-black/30 w-full max-w-md rounded-full backdrop-blur-[32px] mb-8">
-        <div className="h-full relative flex items-center justify-between p-2">
+      <form className="h-16 bg-white/10 w-full max-w-xl  rounded-2xl backdrop-blur-[32px] mb-8">
+        <div className="  h-full relative flex items-center justify-between p-2">
           <input
             onChange={(e) => handleInput(e)}
             type="text"
-            placeholder="Procure por cidade ou país"
-            className="flex-1 bg-transparent outline-none placeholder:text-white text-white text-[15px] font-medium pl-6 h-full"
+            placeholder="Procure por uma cidade ou país"
+            className=" flex-1 bg-transparent outline-none placeholder:text-white text-white text-[15px] font-medium pl-6 h-full"
           />
           <button
             onClick={(e) => handleSubmit(e)}
-            className="bg-blue-800 hover:bg-blue-400 w-20 h-12 rounded-full flex justify-center items-center transition"
+            className="bg-[#1c65a1] hover:bg-[#2e7dbe] w-20 h-12 rounded-xl flex justify-center items-center transition"
           >
             <BsSearch className="text-2xl text-white" />
           </button>
         </div>
       </form>
-      <div className="shadow-xl shadow-black/80 w-full bg-white/10 max-w-[650px] min-h-[584px] text-white backdrop-blur-[32px] rounded-2xl py-12 px-6">
+      <div className="shadow-xl shadow-black/80 w-full bg-white/10 max-w-xl min-h-[584px] text-white backdrop-blur-[32px] rounded-2xl py-12 px-6">
         {loading ? (
           <div className="w-full h-full flex justify-center items-center">
             <ImSpinner8 className="text-white text-8xl animate-spin" />
@@ -168,9 +172,9 @@ function App() {
               <div className="flex font-extralight justify-center py-4 text-2xl text-cyan-200">
                 <p className="capitalize">{data.weather[0].description}</p>
               </div>
-            </div>
-            <div className="flex justify-center items-center">
-              <div className="text-xl  py-6">{date}</div>
+              <div className="flex justify-center items-center">
+                <div className="text-xl py-6">{date}</div>
+              </div>
             </div>
             {/* BOTTOM */}
             <div className="max-w-md mx-auto flex flex-col gap-y-6">

@@ -127,22 +127,7 @@ function App() {
       {errorMsg && (
         <div className="w-full max-w-xl lg:max-w-sm bg-red-600 text-white top-2 lg:top-10 my-10 p-6 capitalize rounded-sm">{`${errorMsg.response.data.message}`}</div>
       )}
-      <form className="shadow-md shadow-black/60  h-16 my-4 bg-white/10 w-full max-w-xl  rounded-2xl backdrop-blur-[32px] mb-8">
-        <div className="  h-full relative flex items-center justify-between p-2">
-          <input
-            onChange={(e) => handleInput(e)}
-            type="text"
-            placeholder="Procure por uma cidade ou país"
-            className=" flex-1 bg-transparent outline-none placeholder:text-white text-white text-[15px] font-medium pl-6 h-full"
-          />
-          <button
-            onClick={(e) => handleSubmit(e)}
-            className="bg-[#1c65a1] hover:bg-[#2e7dbe] w-20 h-12 rounded-xl flex justify-center items-center transition"
-          >
-            <BsSearch className="text-2xl text-white" />
-          </button>
-        </div>
-      </form>
+
       <div className="shadow-xl shadow-black/80 w-full bg-white/10 max-w-xl min-h-fit text-white backdrop-blur-[32px] rounded-2xl py-12 px-6">
         {loading ? (
           <div className="w-full h-full flex justify-center items-center">
@@ -150,6 +135,22 @@ function App() {
           </div>
         ) : (
           <div>
+            <form className="shadow-md shadow-black/60  h-16  w-full max-w-xl  rounded-2xl backdrop-blur-[32px] mb-12">
+              <div className="  h-full relative flex items-center justify-between p-2">
+                <input
+                  onChange={(e) => handleInput(e)}
+                  type="text"
+                  placeholder="Procure por uma cidade ou país"
+                  className=" flex-1 bg-transparent outline-none placeholder:text-white text-white text-[15px] font-medium pl-6 h-full"
+                />
+                <button
+                  onClick={(e) => handleSubmit(e)}
+                  className="bg-[#1c65a1] hover:bg-[#2e7dbe] w-20 h-12 rounded-xl flex justify-center items-center transition"
+                >
+                  <BsSearch className="text-2xl text-white" />
+                </button>
+              </div>
+            </form>
             {/* SP to Dublin */}
             <div className="flex justify-end mb-2">
               <button
